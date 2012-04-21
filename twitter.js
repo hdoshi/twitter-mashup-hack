@@ -4,18 +4,18 @@ var util = require('util'),
 
 
 var twit = new twitter({
-   consumer_key: 'JI1TmXuo3wQfXse0EdLcEg',
-   consumer_secret: 'fYis39HnUW4GNcDlub8PgL4XUnt1Cp4gjKkHMfv3BY',
-   access_token_key: '327235858-fck2bWjWiV78a70BhPBfw4FHebNmH7EDd7dvY1d9',
-   access_token_secret: 'hehcMQkgnROjj14W3qPnzBtjeXQFsWDT3YJaWJ2TFw'
+   consumer_key: '',
+   consumer_secret: '',
+   access_token_key: '',
+   access_token_secret: ''
 });
 
 /*
 var twit = new twitter({
-    consumer_key: 'dSPu1sL7vbFjAFPJJEQ7w',
-    consumer_secret: '79igeWGjzDumqky9atQhifxJZbbZBCLVskB2eunRaw',
-    access_token_key: '12078642-zCdwJXevpP3LTUilxb3pxVij1u90Ygp0gIl85fdU0',
-    access_token_secret: '52j42FNlS66WesTS3t33bVaCaAGz4ur2n36To7sos'
+    consumer_key: '',
+    consumer_secret: '',
+    access_token_key: '',
+    access_token_secret: ''
 });
 */
 var server = http.createServer(function (request, response) {
