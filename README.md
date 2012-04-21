@@ -1,4 +1,1 @@
-node-hack
-=========
-
-node-hack
+Hack project for Microsoft event
