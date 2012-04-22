@@ -1,0 +1,9 @@
+{
+    "name": "twitter-mashup",
+    "version": "0.1.0",
+    
+    "dependencies": {
+        "socket.io": "~0.9.6",
+        "twitter" : "0.1.18"
+    }        
+}
