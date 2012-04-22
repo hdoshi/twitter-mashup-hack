@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,60 +11,47 @@
     <script type="text/javascript"
       src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCTYI3CpEUMNSG7OLPSGEVdhgVCLAKu6uQ&sensor=true">
     </script>
-    <script type="text/javascript">
-      
-    </script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      var socket = io.connect('http://127.0.0.1:8081');
+        var socket = io.connect();
         var map;
-       function initialize() {
-        var myOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 2,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-         map = new google.maps.Map(document.getElementById("map_canvas"),
-            myOptions);
-      }; 
-      var showAd  = function (data) {
-         var geocoder = new google.maps.Geocoder();
-        // for (var i=0;i<data.length;i++) {
-             var address=data.name+','+data.country;
-             var title = "Lot of topics!!";
-             if(data !== undefined && data.trends.trends[0] !== undefined) {
+        function initialize() {
+            var myOptions = {
+              center: new google.maps.LatLng(-34.397, 150.644),
+              zoom: 2,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("map_canvas"),
+                    myOptions);
+        }; 
+        
+        var showAd  = function (data) {
+            var geocoder = new google.maps.Geocoder();
+            var address=data.name+','+data.country;
+            var title = "Lot of topics!!";
+            if(data !== undefined && data.trends.trends[0] !== undefined) {
                 title = data.trends.trends[0].name;                                
-             }
-             geocoder.geocode( { 'address': address}, function(results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
+            }
+    
+            geocoder.geocode( { 'address': address}, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
                     map.setCenter(results[0].geometry.location);
                     var marker = new google.maps.Marker({
                         map: map,
                         position: results[0].geometry.location,
                         title : title,
                     });
-                } else {
-                    alert("Geocode was not successful for the following reason: " + status);
-                }
+                } 
             });
-        //}
-    }
-
-
-
+        }
+      setInterval("socket.emit('getData')", 10000);    
       socket.on('trends', function (data) {
-        console.log(data);
         showAd(data);        
       });
 </script>
-     
   </head>
   <body onload="initialize()">
     <div id="map_canvas" style="width:100%; height:100%"></div>
-    
-
   </body>
-
-
-
 </html>
+
