@@ -11,7 +11,7 @@ var twit = new twitter({
 
 
 var server = http.createServer(function (request, response) {
- if (request.url.match(/^\/(index.html)?$/)) {
+    if (request.url.match(/^\/(index.html)?$/)) {
         return serve(response, "/index.html");
     }
 });
@@ -27,7 +27,7 @@ var getTrend = function(socket) {
         else {
             for (var d in data) {
                 if(data[d] !== undefined) {
-                    var g = function (name, country, woeid) {
+                    var getTopic = function (name, country, woeid) {
                         twit.get('/trends/'+woeid+'.json', {include_entities:true}, function(trend) {
                             if(trend !== undefined) {
                                 if(trend[0] !== undefined) {
@@ -36,7 +36,7 @@ var getTrend = function(socket) {
                             }
                         });
                     };
-                    g(data[d].name, data[d].country, data[d].woeid);
+                    getTopic(data[d].name, data[d].country, data[d].woeid);
                 }
             }
         }
@@ -66,5 +66,3 @@ function error(res, err) {
 }
 
 server.listen(process.env.PORT || 3000);
-
-
