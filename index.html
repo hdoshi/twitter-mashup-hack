@@ -35,7 +35,7 @@
     
             geocoder.geocode( { 'address': address}, function(results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
-                    map.setCenter(results[0].geometry.location);
+                    //map.setCenter(results[0].geometry.location);
                     var marker = new google.maps.Marker({
                         map: map,
                         position: results[0].geometry.location,
@@ -44,7 +44,7 @@
                 } 
             });
         }
-      setInterval("socket.emit('getData')", 10000);    
+      setInterval(function() { socket.emit('getData') } , 10000);    
       socket.on('trends', function (data) {
         showAd(data);        
       });
